@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #0A3B2C;
+  --color-primary-dark: #072b20;
+  --color-primary-light: #165b45;
+  --color-secondary: #0A3B2C;
+  --color-background: #ffffff;
+  --color-foreground: #0A3B2C;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background-color: #0A3B2C;
+    color: #fff;
+  }
+}
+
+/* ── Reusable premium elements ── */
+.pill-badge {
+  @apply inline-flex items-center gap-2 px-4 sm:px-6 py-2 border border-[#0A3B2C]/20 rounded-full text-[10px] sm:text-xs font-semibold text-primary uppercase tracking-[0.15em] bg-white shadow-sm;
+}
+
+.webflow-button {
+  @apply rounded-full bg-[#0A3B2C] text-white px-8 sm:px-10 py-4 sm:py-5 font-bold uppercase tracking-widest text-xs transition-all hover:bg-[#165b45] active:scale-95 shadow-lg shadow-[#0A3B2C]/20;
+}
+
+/* ── Road animations for DrivingScene ── */
+@keyframes roadMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-140px); }
+}
+
+.road-dashes-inner {
+  display: flex;
+  gap: 60px;
+  animation: roadMove 0.7s linear infinite;
+  width: max-content;
+}
+
+.road-dash {
+  width: 80px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+@keyframes carMove1 {
+  0%   { transform: translateX(-320px); }
+  100% { transform: translateX(110vw); }
+}
+
+@keyframes carMove2 {
+  0%   { transform: scaleX(-1) translateX(-320px); }
+  100% { transform: scaleX(-1) translateX(110vw); }
+}
+
+@keyframes carMove3 {
+  0%   { transform: translateX(-600px); }
+  100% { transform: translateX(110vw); }
+}
+
+@keyframes headlightGlow {
+  0%, 100% { opacity: 0.9; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── Premium scroll-driven text appear ── */
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(24px) skewY(3deg); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0)    skewY(0deg); filter: blur(0);   }
+}
+
+.text-reveal {
+  animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Section eyebrow label ── */
+.eyebrow {
+  @apply flex items-center gap-4 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#0A3B2C]/50;
+}
+
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
