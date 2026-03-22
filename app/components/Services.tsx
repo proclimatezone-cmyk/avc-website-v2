@@ -11,7 +11,7 @@ export default function Services() {
       num: "01",
       titleKey: "srv_1_title",
       descKey:  "srv_1_desc",
-      img: "https://images.unsplash.com/photo-1621905252507-b35492d0402e?auto=format&fit=crop&q=80&w=1200", // AC Installation
+      img: "https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=1200", // Outdoor AC Units (Hardware focused)
     },
     {
       num: "02",
@@ -23,7 +23,7 @@ export default function Services() {
       num: "03",
       titleKey: "srv_3_title",
       descKey:  "srv_3_desc",
-      img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200", // Industrial HVAC Blueprint/Engineer
+      img: "https://images.unsplash.com/photo-1534398079246-e3e9d96cd3a2?auto=format&fit=crop&q=80&w=1200", // Industrial Chiller / Hardware
     },
   ];
 
