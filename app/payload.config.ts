@@ -1,14 +1,117 @@
-import { buildConfig } from 'payload'
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
+import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
-import { Services, Portfolio, Reviews, Media } from './collections'
+import { Collections } from './collections'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export default buildConfig({
+// Collections Schema (Simplified and inlined to avoid ESM issues)
+const Services = {
+  slug: 'services',
+  admin: {
+    useAsTitle: 'title',
+  },
+  fields: [
+    {
+      name: 'num',
+      type: 'text',
+      required: true,
+      label: 'Service Number (e.g., 01)',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'desc',
+      type: 'textarea',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'img',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+    },
+  ],
+}
+
+const Portfolio = {
+  slug: 'portfolio',
+  admin: {
+    useAsTitle: 'title',
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'desc',
+      type: 'textarea',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'img',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'tag',
+      type: 'text',
+      required: true,
+      label: 'Location/Tag',
+    },
+  ],
+}
+
+const Reviews = {
+  slug: 'reviews',
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'role',
+      type: 'text',
+      required: true,
+      localized: true,
+    },
+    {
+      name: 'text',
+      type: 'textarea',
+      required: true,
+      localized: true,
+    },
+  ],
+}
+
+const Media = {
+  slug: 'media',
+  upload: true,
+  fields: [
+    {
+      name: 'alt',
+      type: 'text',
+      required: true,
+    },
+  ],
+}
+
+const config = buildConfig({
   admin: {
     user: 'users',
     autoLogin: {
@@ -18,10 +121,10 @@ export default buildConfig({
     },
   },
   collections: [
-    Services,
-    Portfolio,
-    Reviews,
-    Media,
+    Services as any,
+    Portfolio as any,
+    Reviews as any,
+    Media as any,
     {
       slug: 'users',
       auth: true,
@@ -60,3 +163,6 @@ export default buildConfig({
     fallback: true,
   },
 })
+
+export default config
+export { config }

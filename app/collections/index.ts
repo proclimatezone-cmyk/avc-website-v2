@@ -16,19 +16,19 @@ export const Services: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
-      localized: true, // Enable translation for title
+      localized: true,
     },
     {
       name: 'desc',
       type: 'textarea',
       required: true,
-      localized: true, // Enable translation for description
+      localized: true,
     },
     {
       name: 'img',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
   ],
 }
